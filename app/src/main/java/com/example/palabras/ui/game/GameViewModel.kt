@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.palabras.MAX_NO_OF_WORDS
 import com.example.palabras.SCORE_INCREASE
+import com.example.palabras.countriesFlags
 import com.example.palabras.countriesList
+import com.example.palabras.data.Flag
 
 class GameViewModel: ViewModel() {
 
@@ -22,6 +24,10 @@ class GameViewModel: ViewModel() {
     val currentScrambledWord: LiveData<String>
     get() = _currentScrambledWord
 
+    private var _flag = MutableLiveData(0)
+    val flag: LiveData<Int>
+    get() = _flag
+
 
     private var usedList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
@@ -32,10 +38,14 @@ class GameViewModel: ViewModel() {
 
     private fun getNextWord(){
         currentWord = countriesList.random()
+
         val tempWord = currentWord.toCharArray()
         tempWord.shuffle()
         while(String(tempWord).equals(currentWord, false)){
             tempWord.shuffle()
+
+
+
         }
         if (usedList.contains(currentWord)){
             getNextWord()
@@ -43,6 +53,8 @@ class GameViewModel: ViewModel() {
             _currentScrambledWord.value = String(tempWord)
             _currentWordCount.value = (_currentWordCount.value)?.inc()
             usedList.add(currentWord)
+
+
         }
     }
 
@@ -80,6 +92,12 @@ class GameViewModel: ViewModel() {
         getNextWord()
     }
 
+    fun showFlag(): Int? {
+        val position = countriesList.indexOf(currentWord)
+        _flag.value = countriesFlags[position]
+        return _flag.value
+
+    }
 
 
 }
