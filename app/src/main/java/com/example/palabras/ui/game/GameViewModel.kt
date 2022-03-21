@@ -31,7 +31,7 @@ class GameViewModel: ViewModel() {
     }
 
     private fun getNextWord(){
-        currentWord = countriesList.random()
+        currentWord = countriesList.random().toString()
         val tempWord = currentWord.toCharArray()
         tempWord.shuffle()
         while(String(tempWord).equals(currentWord, false)){
