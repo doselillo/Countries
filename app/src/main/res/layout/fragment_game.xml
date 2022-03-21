@@ -22,6 +22,17 @@
             android:padding="@dimen/def_padding"
             tools:context=".ui.game.GameFragment">
 
+            <ImageView
+                android:id="@+id/tip_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/def_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tip"
+                app:srcCompat="@drawable/transparent_flag_with_question_mark"
+                tools:srcCompat="@drawable/transparent_flag_with_question_mark" />
+
             <Button
                 android:id="@+id/skip"
                 style="?attr/materialButtonOutlinedStyle"
@@ -33,6 +44,18 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/submit"
                 app:layout_constraintEnd_toStartOf="@+id/submit"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/tip"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/def_padding"
+                android:layout_marginTop="@dimen/def_padding"
+                android:text="@string/help"
+                app:layout_constraintTop_toBottomOf="@+id/skip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <Button
                 android:id="@+id/submit"

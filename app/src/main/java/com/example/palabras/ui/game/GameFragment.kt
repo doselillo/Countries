@@ -11,6 +11,7 @@ import com.example.palabras.databinding.FragmentGameBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.fragment.app.viewModels
 import com.example.palabras.MAX_NO_OF_WORDS
+import com.example.palabras.countriesFlags
 
 
 class GameFragment : Fragment() {
@@ -38,6 +39,8 @@ class GameFragment : Fragment() {
         // Setup a click listener for the Submit and Skip buttons.
         binding.submit.setOnClickListener { onSubmitWord() }
         binding.skip.setOnClickListener { onSkipWord() }
+        binding.tip.setOnClickListener{ viewModel.showFlag()
+            ?.let { it1 -> binding.tipFlag.setImageResource(it1) } }
 
 
 
@@ -50,6 +53,7 @@ class GameFragment : Fragment() {
 
         if (viewModel.isUserWordCorrect(playerWord)){
             setErrorTextField(false)
+            binding.tipFlag.setImageResource(R.drawable.transparent_flag_with_question_mark)
             if (!viewModel.nextWord()) {
                 showFinalScoreDialog()
             }
@@ -61,7 +65,7 @@ class GameFragment : Fragment() {
     private fun onSkipWord() {
         if (viewModel.nextWord()) {
             setErrorTextField(false)
-
+            binding.tipFlag.setImageResource(R.drawable.transparent_flag_with_question_mark)
         } else {
             showFinalScoreDialog()
         }
