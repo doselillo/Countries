@@ -1,3 +1,3 @@
 # Palabras
 
-Project I have made to practice data binding, viewmodels, fragments and localizations.
+Project I have made to practice data binding, fragments and viewmodels.
